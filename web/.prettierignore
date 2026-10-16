@@ -1,5 +1,7 @@
 dist
 coverage
+reports
+.stryker-tmp
 package-lock.json
 cypress/screenshots
 cypress/videos

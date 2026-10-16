@@ -1,6 +1,8 @@
 node_modules/
 dist/
 coverage/
+reports/
+.stryker-tmp/
 cypress/screenshots/
 cypress/videos/
 .vercel/
