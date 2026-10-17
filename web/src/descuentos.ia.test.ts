@@ -27,7 +27,8 @@ describe('validar', () => {
 
 describe('formatearBs', () => {
   it('formatea un valor con coma decimal', () => {
-    const valor = 1234.5
-    expect(formatearBs(valor)).toBe(`Bs ${valor.toFixed(2).replace('.', ',')}`)
+    expect(formatearBs(123.45)).toBe('Bs 123,45')
+    expect(formatearBs(0)).toBe('Bs 0,00')
+    expect(formatearBs(1500)).toBe('Bs 1500,00')
   })
 })
