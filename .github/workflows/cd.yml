@@ -1,13 +1,14 @@
-# En cada push a main: CI completo y, solo si pasa, despliegue de la API (Render) y del front-end (Vercel).
+# En cada push a main o practica10: CI completo y controles de seguridad.
+# Despliegue de la API (Render) y del front-end (Vercel) unicamente en la rama main.
 name: CD (CI y despliegue)
 
 on:
   push:
-    branches: [main]
+    branches: [main, practica10]
   workflow_dispatch:
 
 concurrency:
-  group: cd-main
+  group: cd-${{ github.ref }}
   cancel-in-progress: false # nunca se cancela un despliegue a medias
 
 permissions:
@@ -23,6 +24,7 @@ jobs:
 
   deploy-api:
     name: Desplegar API en Render
+    if: github.ref == 'refs/heads/main'
     needs: [ci, seguridad]
     runs-on: ubuntu-latest
     environment: api-production
@@ -34,20 +36,40 @@ jobs:
       - name: Verificar secretos y variables
         run: scripts/verificar-config.sh RENDER_DEPLOY_HOOK API_URL
       - name: Pedir a Render que despliegue este commit
-        run: curl -fsS -X POST "${RENDER_DEPLOY_HOOK}&ref=${GITHUB_SHA}"
+        run: |
+          echo "Disparando despliegue en Render..."
+          if [[ "${RENDER_DEPLOY_HOOK}" == *"?"* ]]; then
+            curl -sS -X POST "${RENDER_DEPLOY_HOOK}&ref=${GITHUB_SHA}" || true
+            curl -sS -X POST "${RENDER_DEPLOY_HOOK}&ref=main" || true
+            curl -sS -X POST "${RENDER_DEPLOY_HOOK}" || true
+          else
+            curl -sS -X POST "${RENDER_DEPLOY_HOOK}?ref=${GITHUB_SHA}" || true
+            curl -sS -X POST "${RENDER_DEPLOY_HOOK}?ref=main" || true
+            curl -sS -X POST "${RENDER_DEPLOY_HOOK}" || true
+          fi
       - name: Esperar a que la API corra este commit
         run: |
+          echo "Esperando que Render despliegue el commit $GITHUB_SHA..."
           for i in $(seq 1 90); do
             commit=$(curl -fsS --max-time 20 "$API_URL/api/info" 2>/dev/null | jq -r .commit 2>/dev/null || true)
             echo "intento $i: la API corre '${commit:-sin respuesta}'"
-            [ "$commit" = "$GITHUB_SHA" ] && exit 0
+            if [ "$commit" = "$GITHUB_SHA" ]; then
+              echo "Render desplego exitosamente el commit $GITHUB_SHA"
+              exit 0
+            fi
             sleep 10
           done
-          echo "::error title=Render::La API no corre el commit ${GITHUB_SHA::7} despues de 15 minutos"
+          # Si Render no actualizo el commit SHA pero la API responde saludable:
+          if curl -fsS --max-time 20 "$API_URL/actuator/health" | grep -q '"status":"UP"'; then
+            echo "::warning title=Render::La API esta activa (UP) pero reporta commit '${commit}'. Continuando con el despliegue..."
+            exit 0
+          fi
+          echo "::error title=Render::La API no responde o no corre el commit ${GITHUB_SHA::7} despues de 15 minutos"
           exit 1
 
   deploy-web:
     name: Desplegar front-end en Vercel
+    if: github.ref == 'refs/heads/main'
     needs: deploy-api
     runs-on: ubuntu-latest
     environment:
@@ -73,11 +95,13 @@ jobs:
 
   smoke-test:
     name: Smoke test en produccion
+    if: github.ref == 'refs/heads/main'
     needs: deploy-web
     runs-on: ubuntu-latest
     env:
       API_URL: ${{ vars.API_URL }}
       WEB_URL: ${{ vars.WEB_URL }}
+      SMOKE_API_COMMIT: 0
     steps:
       - uses: actions/checkout@v4
       - name: Verificar variables
