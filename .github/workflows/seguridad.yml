@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Filtro rapido de secretos en los archivos
-        run: scripts/buscar-secretos.sh
+        run: bash scripts/buscar-secretos.sh
       - name: gitleaks (historial completo)
         uses: gitleaks/gitleaks-action@v2
         env:
@@ -85,7 +85,7 @@ jobs:
           cat api.log
           exit 1
       - name: Reglas propias (auditoria-seguridad.sh)
-        run: scripts/auditoria-seguridad.sh http://localhost:8080
+        run: bash scripts/auditoria-seguridad.sh http://localhost:8080
       - name: ZAP - escaneo de la API con el contrato OpenAPI
         run: |
           chmod -R a+rwx seguridad
