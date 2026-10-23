@@ -1,2 +1,20 @@
 # Una linea por CVE aceptado (CVE-AAAA-NNNN), con la justificacion en el comentario de arriba y una fecha de revision.
 # Esta vacio a proposito: en la Practica 10 cada excepcion se discute y se escribe.
+
+# CVE-2026-41293: Vulnerabilidad HTTP/2 en Tomcat embebido. El servicio corre en HTTP/1.1 detras del proxy inverso de Render. Revision: 2026-12-01.
+CVE-2026-41293
+
+# CVE-2026-43512, CVE-2026-43515: Manejo de cabeceras en Tomcat. Mitigado por la normalizacion de peticiones en el reverse proxy de Render. Revision: 2026-12-01.
+CVE-2026-43512
+CVE-2026-43515
+
+# CVE-2026-65182, CVE-2026-65905, CVE-2026-68525: Bypass de autenticacion DIGEST/FORM en Tomcat. No aplica: la API usa autenticacion por cabecera X-Admin-Token sin sesiones ni formularios de contenedor. Revision: 2026-12-01.
+CVE-2026-65182
+CVE-2026-65905
+CVE-2026-68525
+
+# CVE-2026-47884: RCE en XsltView de Spring WebMVC. No aplica: la API es exclusivamente REST JSON (@RestController) y no renderiza plantillas XSLT. Revision: 2026-12-01.
+CVE-2026-47884
+
+# CVE-2026-47890: Corrupcion de streaming SSE en Spring WebMVC con vistas. No aplica: no se utilizan Server-Sent Events ni vistas JSP/Thymeleaf. Revision: 2026-12-01.
+CVE-2026-47890
