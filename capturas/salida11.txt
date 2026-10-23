@@ -1,0 +1,25 @@
+OK     API: cabecera 'x-content-type-options' presente
+OK     API: cabecera 'x-frame-options' presente
+OK     API: cabecera 'content-security-policy' presente
+OK     API: cabecera 'referrer-policy' presente
+OK     API: cabecera 'cache-control' presente
+OK     API: cabecera 'strict-transport-security' presente
+OK     API: no anuncia tecnologia ni version
+OK     CORS: un origen desconocido no recibe permiso
+OK     Errores: un cuerpo ilegible no revela detalles internos
+OK     Errores: una ruta inexistente no revela detalles internos
+OK     Acceso: /api/admin/estadisticas sin token responde 401
+OK     Acceso: con un token incorrecto responde 401
+OK     Entrada: un precio de 1e300 se rechaza con 400
+OK     Actuator: /actuator/env no es publico (404)
+OK     Actuator: /actuator/heapdump no es publico (404)
+OK     Actuator: /actuator/beans no es publico (404)
+OK     Actuator: /actuator/mappings no es publico (404)
+OK     Actuator: /actuator/health sin detalles
+OK     Web: cabecera 'x-content-type-options' presente
+OK     Web: cabecera 'x-frame-options' presente
+OK     Web: cabecera 'content-security-policy' presente
+OK     Web: cabecera 'referrer-policy' presente
+OK     Web: HSTS presente
+OK     Web: el HTML no contiene secretos evidentes
+Auditoria: todo en orden

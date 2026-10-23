@@ -1,0 +1,36 @@
+FALLO  API: falta la cabecera 'x-content-type-options'
+::error title=Seguridad::API: falta la cabecera 'x-content-type-options'
+FALLO  API: falta la cabecera 'x-frame-options'
+::error title=Seguridad::API: falta la cabecera 'x-frame-options'
+FALLO  API: falta la cabecera 'content-security-policy'
+::error title=Seguridad::API: falta la cabecera 'content-security-policy'
+FALLO  API: falta la cabecera 'referrer-policy'
+::error title=Seguridad::API: falta la cabecera 'referrer-policy'
+FALLO  API: falta la cabecera 'cache-control'
+::error title=Seguridad::API: falta la cabecera 'cache-control'
+FALLO  API: falta la cabecera 'strict-transport-security'
+::error title=Seguridad::API: falta la cabecera 'strict-transport-security'
+OK     API: no anuncia tecnologia ni version
+OK     CORS: un origen desconocido no recibe permiso
+OK     Errores: un cuerpo ilegible no revela detalles internos
+OK     Errores: una ruta inexistente no revela detalles internos
+OK     Acceso: /api/admin/estadisticas sin token responde 404
+OK     Acceso: con un token incorrecto responde 404
+FALLO  Entrada: un precio de 1e300 responde 200 (se esperaba 400)
+::error title=Seguridad::Entrada: un precio de 1e300 responde 200 (se esperaba 400)
+OK     Actuator: /actuator/env no es publico (404)
+OK     Actuator: /actuator/heapdump no es publico (404)
+OK     Actuator: /actuator/beans no es publico (404)
+OK     Actuator: /actuator/mappings no es publico (404)
+OK     Actuator: /actuator/health sin detalles
+FALLO  Web: falta la cabecera 'x-content-type-options'
+::error title=Seguridad::Web: falta la cabecera 'x-content-type-options'
+FALLO  Web: falta la cabecera 'x-frame-options'
+::error title=Seguridad::Web: falta la cabecera 'x-frame-options'
+FALLO  Web: falta la cabecera 'content-security-policy'
+::error title=Seguridad::Web: falta la cabecera 'content-security-policy'
+FALLO  Web: falta la cabecera 'referrer-policy'
+::error title=Seguridad::Web: falta la cabecera 'referrer-policy'
+OK     Web: HSTS presente
+OK     Web: el HTML no contiene secretos evidentes
+Auditoria: HAY FALLOS
