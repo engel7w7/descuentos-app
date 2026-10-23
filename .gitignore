@@ -10,3 +10,6 @@ node_modules/
 seguridad/zap-informe.*
 seguridad/*.html
 seguridad/*.json
+
+# Capturas de evidencia (para el PDF de entrega, no se versionan en el repositorio)
+capturas/
