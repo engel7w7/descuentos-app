@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual de Usuario - Calculadora de Descuentos (Versión Final Verificada)</title>
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --text: #1f2937;
+        --text-muted: #4b5563;
+        --bg: #f9fafb;
+        --card-bg: #ffffff;
+        --border: #e5e7eb;
+        --success-bg: #ecfdf5;
+        --success-border: #10b981;
+        --success-text: #065f46;
+        --error-bg: #fef2f2;
+        --error-border: #ef4444;
+        --error-text: #991b1b;
+        --warning-bg: #fffbeb;
+        --warning-border: #f59e0b;
+        --warning-text: #92400e;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+        padding: 2rem 1rem;
+      }
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+      header {
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      h1 {
+        font-size: 2rem;
+        color: #111827;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 9999px;
+        background: #dcfce7;
+        color: #166534;
+        margin-bottom: 0.5rem;
+      }
+      h2 {
+        font-size: 1.35rem;
+        color: #1e3a8a;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.4rem;
+      }
+      h3 {
+        font-size: 1.1rem;
+        color: #1f2937;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-bottom: 1rem;
+        color: var(--text-muted);
+      }
+      ul,
+      ol {
+        margin-bottom: 1.25rem;
+        padding-left: 1.5rem;
+        color: var(--text-muted);
+      }
+      li {
+        margin-bottom: 0.4rem;
+      }
+      .notice-box {
+        background: var(--warning-bg);
+        border-left: 4px solid var(--warning-border);
+        padding: 0.85rem 1.25rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1rem 0;
+        color: var(--warning-text);
+        font-size: 0.95rem;
+      }
+      .sim-box {
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+        border: 1px solid transparent;
+      }
+      .sim-box-success {
+        background: var(--success-bg);
+        border-color: var(--success-border);
+        color: var(--success-text);
+      }
+      .sim-box-error {
+        background: var(--error-bg);
+        border-color: var(--error-border);
+        color: var(--error-text);
+        font-weight: 500;
+      }
+      .step-card {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--primary);
+        padding: 1rem 1.25rem;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.92rem;
+      }
+      th,
+      td {
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        text-align: left;
+      }
+      th {
+        background: #f3f4f6;
+        font-weight: 600;
+        color: #111827;
+      }
+      .faq-item {
+        background: #f9fafb;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+      }
+      .faq-question {
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.35rem;
+      }
+      .faq-answer {
+        color: var(--text-muted);
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <span class="badge">Manual de Usuario Verificado (Versión Final)</span>
+        <h1>Calculadora de Descuentos</h1>
+        <p style="color: var(--text-muted)">
+          Manual técnico y operativo de usuario final verificado contra la aplicación real.
+        </p>
+      </header>
+
+      <section>
+        <h2>1. Para qué sirve la aplicación y quién la usa</h2>
+        <p>
+          La <strong>Calculadora de Descuentos</strong> es una herramienta web de cálculo inmediato
+          diseñada para determinar el monto descontado y el precio líquido final a pagar en
+          bolivianos (Bs), garantizando la aplicación rigurosa de las reglas comerciales de
+          redondeo.
+        </p>
+        <h3>Público destinatario</h3>
+        <ul>
+          <li>
+            <strong>Comerciantes y personal de ventas:</strong> Para cotizar rebajas en tiempo real
+            sin riesgo de error de cálculo manual.
+          </li>
+          <li>
+            <strong>Compradores y clientes:</strong> Para comprobar con certeza el ahorro de una
+            promoción y el monto exacto a desembolsar.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. Guía paso a paso para calcular un descuento</h2>
+        <div class="notice-box">
+          <strong>Regla de tipeo importante:</strong> Ingrese exclusivamente números en los
+          formularios. No escriba la palabra "Bs", signos monetarios ni el símbolo "%". Para números
+          con centavos, use el <strong>punto decimal (.)</strong> del teclado para asegurar la
+          compatibilidad con el navegador.
+        </div>
+
+        <div class="step-card">
+          <h4>Paso 1: Identificar el formulario</h4>
+          <p>
+            Al acceder al sitio web observará el título central
+            <strong>"Calculadora de Descuentos"</strong> y dos campos numéricos limpios.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>Paso 2: Ingresar el precio original</h4>
+          <p>
+            Haga clic en la casilla <strong>"Precio original (Bs)"</strong>. Escriba el valor de
+            venta base del producto mayor a cero (por ejemplo, <code>200</code> o
+            <code>150.75</code>).
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>Paso 3: Ingresar el porcentaje de descuento</h4>
+          <p>
+            Haga clic en la casilla <strong>"Porcentaje de descuento"</strong>. Digite un número
+            entre <code>0</code> y <code>100</code> correspondiente a la oferta (por ejemplo,
+            <code>25</code> para un 25 %).
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>Paso 4: Presionar el botón de cálculo</h4>
+          <p>
+            Haga clic sobre el botón <strong>"Calcular descuento"</strong>. Notará que el botón
+            cambia brevemente al estado <strong>"Calculando..."</strong> y queda deshabilitado para
+            evitar peticiones duplicadas mientras la API procesa el resultado.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>Paso 5: Interpretar el resultado</h4>
+          <p>
+            En la parte inferior se desplegará una tarjeta verde rotulada
+            <strong>Resultado</strong>:
+          </p>
+          <div class="sim-box sim-box-success">
+            <h4 style="margin-bottom: 0.35rem; color: #065f46">Resultado</h4>
+            <p style="margin: 0"><strong>Descuento aplicado:</strong> Bs 50,00</p>
+            <p style="margin: 0"><strong>Precio final:</strong> Bs 150,00</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Qué significan los mensajes de error y cómo resolverlos</h2>
+        <p>
+          Si algún valor viola las reglas de negocio, la aplicación detiene el envío y muestra una
+          caja roja en la parte superior del formulario:
+        </p>
+
+        <h3>Error: "El precio original debe ser mayor que cero"</h3>
+        <div class="sim-box sim-box-error">El precio original debe ser mayor que cero</div>
+        <p>
+          <strong>Causa:</strong> La casilla de precio se dejó en blanco, se introdujo
+          <code>0</code> o un valor negativo como <code>-10</code>.
+        </p>
+        <p>
+          <strong>Solución:</strong> Escriba un monto estrictamente mayor a 0 (por ejemplo,
+          <code>0.01</code>, <code>50</code> o <code>120.50</code>) y vuelva a pulsar "Calcular
+          descuento".
+        </p>
+
+        <h3>Error: "El porcentaje de descuento debe estar entre 0 y 100"</h3>
+        <div class="sim-box sim-box-error">El porcentaje de descuento debe estar entre 0 y 100</div>
+        <p>
+          <strong>Causa:</strong> Se escribió una cifra negativa (como <code>-5</code>) o una tasa
+          superior al máximo permitido (como <code>150</code>).
+        </p>
+        <p>
+          <strong>Solución:</strong> Modifique el porcentaje para que esté comprendido en el
+          intervalo cerrado de <code>0</code> a <code>100</code> inclusive.
+        </p>
+
+        <h3>Avisos de estado en el pie de página</h3>
+        <ul>
+          <li>
+            <code>Comprobando conexión con la API...</code>: Estado transitorio inicial al cargar la
+            página mientras se verifica la salud del backend.
+          </li>
+          <li>
+            <code>Conectado a la API en: producción</code> (o local): El sistema backend está en
+            línea y operando con normalidad.
+          </li>
+          <li>
+            <code>Sin conexión con el servicio de cálculo</code>: El backend no está accesible.
+            Compruebe su conexión a internet o recargue el navegador transcurridos unos segundos.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Preguntas Frecuentes (FAQ)</h2>
+        <div class="faq-item">
+          <div class="faq-question">1. ¿Puedo ingresar centavos en el precio?</div>
+          <div class="faq-answer">
+            Sí. La casilla admite hasta dos decimales utilizando el punto (por ejemplo:
+            <code>99.99</code> o <code>33.33</code>).
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">2. ¿Es válido un descuento del 0 % o del 100 %?</div>
+          <div class="faq-answer">
+            Ambos son valores válidos: al 0 % el precio final es idéntico al original (descuento Bs
+            0,00); al 100 % el precio final resultante es exactamente Bs 0,00.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">3. ¿Cómo se redondean las fracciones de centavo?</div>
+          <div class="faq-answer">
+            Se aplica redondeo aritmético al centavo más cercano (mitad hacia arriba si el tercer
+            decimal es 5 o superior). Por ejemplo, un precio de 33.33 con 10 % genera Bs 3,33 de
+            descuento y un precio final de Bs 30,00.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">4. ¿Cómo realizo un nuevo cálculo para otro producto?</div>
+          <div class="faq-answer">
+            No es necesario recargar la página. Seleccione el texto en las casillas, bórrelo,
+            introduzca los nuevos datos y pulse nuevamente "Calcular descuento". El resultado verde
+            se actualizará de inmediato.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">5. ¿La aplicación guarda historial o emite facturas?</div>
+          <div class="faq-answer">
+            No. La aplicación realiza operaciones en tiempo real en memoria y no almacena datos de
+            transacciones ni emite comprobantes descargables.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>5. Referencia Rápida</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Elemento Visible</th>
+              <th>Tipo / Selector</th>
+              <th>Rango Permitido</th>
+              <th>Comportamiento / Formato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Precio original (Bs)</strong></td>
+              <td>Campo numérico (<code>step="0.01"</code>)</td>
+              <td>Mayor estricto a 0 (<code>&gt; 0</code>)</td>
+              <td>Admite decimales con punto.</td>
+            </tr>
+            <tr>
+              <td><strong>Porcentaje de descuento</strong></td>
+              <td>Campo numérico (<code>min="0" max="100"</code>)</td>
+              <td>De <code>0</code> a <code>100</code> inclusive</td>
+              <td>Sin símbolo %. Enteros o decimales.</td>
+            </tr>
+            <tr>
+              <td><strong>Calcular descuento</strong></td>
+              <td>Botón principal</td>
+              <td>Clic al completar datos</td>
+              <td>Pasa a <strong>Calculando...</strong> (deshabilitado).</td>
+            </tr>
+            <tr>
+              <td><strong>Resultado</strong></td>
+              <td>Tarjeta verde (<code>.resultado</code>)</td>
+              <td>Lectura de salida</td>
+              <td>Formato fijo: <code>Bs XX,XX</code> (coma decimal).</td>
+            </tr>
+            <tr>
+              <td><strong>Error</strong></td>
+              <td>Alerta roja superior (<code>.error</code>)</td>
+              <td>Fallo de validación</td>
+              <td>Mensaje literal exacto de la regla violada.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

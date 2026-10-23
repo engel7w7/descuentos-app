@@ -152,3 +152,28 @@ jobs:
             web/cypress/screenshots
             api.log
           if-no-files-found: ignore
+
+  # 5. Mutacion (Stryker): prueba de mutacion sobre src/cupones.ts
+  mutacion-frontend:
+    name: Test de Mutación (Stryker)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar Stryker
+        run: npx stryker run
+

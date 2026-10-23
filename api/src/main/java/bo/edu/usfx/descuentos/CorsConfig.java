@@ -15,13 +15,20 @@ public class CorsConfig implements WebMvcConfigurer {
     private final String[] origenes;
 
     public CorsConfig(@Value("${app.cors-origins}") String[] origenes) {
+        if (origenes != null) {
+            for (String origen : origenes) {
+                if (origen != null && origen.contains("*")) {
+                    throw new IllegalStateException("CORS no permite comodines (*): " + origen);
+                }
+            }
+        }
         this.origenes = origenes;
     }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOriginPatterns(origenes)
+                .allowedOrigins(origenes)
                 .allowedMethods("GET", "POST", "OPTIONS")
                 .allowedHeaders("*");
     }
