@@ -17,9 +17,12 @@ jobs:
   ci:
     uses: ./.github/workflows/ci.yml
 
+  seguridad:
+    uses: ./.github/workflows/seguridad.yml
+
   deploy-api:
     name: Desplegar API en Render
-    needs: ci
+    needs: [ci, seguridad]
     runs-on: ubuntu-latest
     environment: api-production
     env:
