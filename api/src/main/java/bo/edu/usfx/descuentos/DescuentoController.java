@@ -24,9 +24,4 @@ public class DescuentoController {
         double precioFinal = calculadora.calcularPrecioFinal(solicitud.precio(), solicitud.porcentaje());
         return new RespuestaDescuento(solicitud.precio(), solicitud.porcentaje(), precioFinal);
     }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Map<String, String>> datosInvalidos(IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
-    }
 }
