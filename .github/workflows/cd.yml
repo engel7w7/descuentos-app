@@ -32,7 +32,7 @@ jobs:
       RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
       API_URL: ${{ vars.API_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verificar secretos y variables
         run: scripts/verificar-config.sh RENDER_DEPLOY_HOOK API_URL
       - name: Pedir a Render que despliegue este commit
@@ -81,7 +81,7 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       API_URL: ${{ vars.API_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verificar secretos y variables
         run: scripts/verificar-config.sh VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID API_URL
       - uses: actions/setup-node@v4
@@ -103,7 +103,7 @@ jobs:
       WEB_URL: ${{ vars.WEB_URL }}
       SMOKE_API_COMMIT: 0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verificar variables
         run: scripts/verificar-config.sh API_URL WEB_URL
       - name: Comprobar lo desplegado
