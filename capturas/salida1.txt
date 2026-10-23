@@ -1,0 +1,35 @@
+﻿======================================================================
+HERRAMIENTA 1: scripts/buscar-secretos.sh
+======================================================================
+$ scripts/buscar-secretos.sh
+POSIBLES SECRETOS (archivo:linea; el valor no se imprime):
+api/src/main/resources/application.properties:24
+::error title=Secretos::Hay valores que parecen secretos en archivos versionados
+
+======================================================================
+HERRAMIENTA 2: gitleaks detect --source . -v
+======================================================================
+$ gitleaks detect --source . -v
+System.Management.Automation.RemoteException
+    Ôùï
+    ÔöéÔò▓
+    Ôöé Ôùï
+    Ôùï Ôûæ
+    Ôûæ    gitleaks
+System.Management.Automation.RemoteException
+Finding:     app.admin-token=[1;3;mZx9Qm4Lp8Rt2Vw7Yb3Nc5Hd6Jf1Ks0Ga[0m
+Secret:      [1;3;mZx9Qm4Lp8Rt2Vw7Yb3Nc5Hd6Jf1Ks0Ga[0m
+RuleID:      generic-api-key
+Entropy:     5.000000
+File:        api/src/main/resources/application.properties
+Line:        24
+Commit:      b49b399653bd7ffddfb05987029bad44030147c4
+Author:      engel7w7
+Email:       romerojhojan86@gmail.com
+Date:        2026-10-23T20:17:07Z
+Fingerprint: b49b399653bd7ffddfb05987029bad44030147c4:api/src/main/resources/application.properties:generic-api-key:24
+Link:        https://github.com/engel7w7/descuentos-app/blob/b49b399653bd7ffddfb05987029bad44030147c4/api/src/main/resources/application.properties#L24
+
+[90m4:17PM[0m [32mINF[0m [1m20 commits scanned.[0m
+[90m4:17PM[0m [32mINF[0m [1mscanned ~469903 bytes (469.90 KB) in 650ms[0m
+[90m4:17PM[0m [33mWRN[0m [1mleaks found: 1[0m
