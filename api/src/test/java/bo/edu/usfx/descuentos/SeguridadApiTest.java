@@ -64,4 +64,14 @@ class SeguridadApiTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error", is("El precio original debe ser mayor que cero")));
     }
+
+    @Test
+    void entradaAcotadaRechazaPrecioAbsurdo() throws Exception {
+        mvc.perform(post("/api/descuento")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"precio\":1e300,\"porcentaje\":10}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(not(containsString("Exception"))))
+                .andExpect(content().string(not(containsString("bo.edu"))));
+    }
 }

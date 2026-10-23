@@ -46,4 +46,9 @@ class CalculadoraDescuentosTest {
                 assertThrows(IllegalArgumentException.class, () -> calculadora.calcularPrecioFinal(precio, 10));
         assertEquals("El precio original debe ser mayor que cero", e.getMessage());
     }
+
+    @Test
+    void rechazaPreciosAbsurdosOMayoresAlLimite() {
+        assertThrows(IllegalArgumentException.class, () -> calculadora.calcularPrecioFinal(1e300, 10));
+    }
 }

@@ -12,9 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculadoraDescuentos {
 
+    public static final double PRECIO_MAXIMO = 100_000_000.0;
+
     public double calcularPrecioFinal(double precioOriginal, double porcentajeDescuento) {
-        if (precioOriginal <= 0) {
+        if (Double.isNaN(precioOriginal) || Double.isInfinite(precioOriginal) || precioOriginal <= 0) {
             throw new IllegalArgumentException("El precio original debe ser mayor que cero");
+        }
+        if (precioOriginal > PRECIO_MAXIMO) {
+            throw new IllegalArgumentException("El precio original no puede superar " + (long) PRECIO_MAXIMO);
         }
         if (porcentajeDescuento < 0 || porcentajeDescuento > 100) {
             throw new IllegalArgumentException("El porcentaje de descuento debe estar entre 0 y 100");
