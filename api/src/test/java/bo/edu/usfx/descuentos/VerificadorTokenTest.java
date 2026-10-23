@@ -26,10 +26,10 @@ class VerificadorTokenTest {
 
     @Test
     void tokenConfiguradoValidaCorrectamente() {
-        String token = "token-de-longitud-suficiente-123456";
-        VerificadorToken verificador = new VerificadorToken(token);
+        String tokenPrueba = "token-de-prueba-suficiente-123456";
+        VerificadorToken verificador = new VerificadorToken(tokenPrueba);
         assertTrue(verificador.estaConfigurado());
-        assertTrue(verificador.esValido(token));
+        assertTrue(verificador.esValido(tokenPrueba));
         assertFalse(verificador.esValido("otro-token-diferente"));
         assertFalse(verificador.esValido(null));
     }

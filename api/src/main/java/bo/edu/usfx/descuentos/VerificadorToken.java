@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 public class VerificadorToken {
 
     public static final int LONGITUD_MINIMA = 16;
-    private final String tokenConfigurado;
+    private final String tokenEsperado;
 
-    public VerificadorToken(@Value("${ADMIN_TOKEN:#{null}}") String tokenConfigurado) {
-        this.tokenConfigurado = tokenConfigurado;
+    public VerificadorToken(@Value("${ADMIN_TOKEN:#{null}}") String tokenConfig) {
+        this.tokenEsperado = tokenConfig;
     }
 
     public boolean estaConfigurado() {
-        return tokenConfigurado != null && tokenConfigurado.trim().length() >= LONGITUD_MINIMA;
+        return tokenEsperado != null && tokenEsperado.trim().length() >= LONGITUD_MINIMA;
     }
 
     public boolean esValido(String tokenEntrante) {
@@ -24,7 +24,7 @@ public class VerificadorToken {
             return false;
         }
         byte[] a = tokenEntrante.getBytes(StandardCharsets.UTF_8);
-        byte[] b = tokenConfigurado.getBytes(StandardCharsets.UTF_8);
+        byte[] b = tokenEsperado.getBytes(StandardCharsets.UTF_8);
         return MessageDigest.isEqual(a, b);
     }
 }
